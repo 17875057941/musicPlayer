@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>歌单播放</title>
+	<link rel="stylesheet" type="text/css" href="../public/css/style.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+	<script type="text/javascript" src="../public/lib/jquery-3.2.1.js"></script>
+</head>
+<body style="background-color: rgb(41,42,43)">
+	<div class="main">
+		<div class="mod_songlist_toolbar">
+			<ul>
+				<li><a href="">收藏</a></li>
+				<li><a href="">添加到</a></li>
+				<li><a href="">下载</a></li>
+				<li><a href="">删除</a></li>
+				<li><a href="">清空列表</a></li>
+			</ul>
+		</div>
+
+		<div class="db_scrollable">
+			<ul>
+				<li class="songList_name">歌曲</li>
+				<li class="songList_author">歌手</li>
+				<li class="songList_time">时长</li>
+			</ul>
+
+			<ul class="songList_list"></ul>
+		</div>
+
+		<div class="mod_song_info">
+			<div class="songList_img">
+				<img src="">
+			</div>
+
+			<div class="songList_lyric">
+				<p>歌曲名</p>
+				<p>歌手</p>
+				<p></p>
+			</div>
+		</div>
+
+		<div class="player"><!-- 播放条 -->
+			<audio controls="controls" style="display: none"></audio>
+			<i id="backward" class="fa fa-step-backward fa-2x" style="color:#B0B0B0"></i>
+			<i id="play-btn" class="fa fa-play fa-2x" style="color:#B0B0B0"></i>
+			<i id="forward" class="fa fa-step-forward fa-2x" style="color:#B0B0B0"></i>
+			
+			<div class="player_music">
+				<div class="player_music_info"></div>
+				<div class="player_music_time"></div>
+				<div class="player_music_progress">
+					<div class="song_bgbar"></div>
+					<div class="dot-bar"></div>
+					<i class="fa fa-circle fa-1x dot" style="color: #fff;font-size:10px;z-index: 1;"></i>
+				</div>
+			</div>
+
+			<i id="Play_Mode" class="fa fa-random fa-2x" style="color: #B0B0B0" title="随机"></i>
+
+			<div class="volume">
+				<i class="fa fa-volume-up fa-2x" style="color: #B0B0B0"></i>
+				<div class="volume-bgbar"></div>
+				<i class="fa fa-circle fa-1x volume-dot" style="color: #fff;font-size:10px;z-index: 1;"></i>
+			</div>			
+		</div>
+	</div>
+	
+	<script src="../public/lib/list.js"></script>
+</body>
+</html>
