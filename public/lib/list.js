@@ -28,34 +28,45 @@ function createTags(obj,index){
 }
 
 function getListData(){
-	var data,listIndex;
-	var getList= $.ajax({//获取歌单数据
-		url:'http://localhost:8000/songList',
-		type:'GET',
-		success:function(json){
-		    data=json;
-	}
-})
-	var getListIndex=$.ajax({
+	var data;
+// 	var getList= $.ajax({//获取歌单数据
+// 		url:'http://localhost:8000/songList',
+// 		type:'GET',
+// 		dataType:"json"
+// 		success:function(json){
+// 		    data=json;//歌单id
+// 		    console.log('json'+json);
+// 	}
+// })
+	// var getListIndex=$.ajax({//根据歌单id获取某个歌单
+	// 	url:'http://localhost:8000/SingleList',
+	// 	type:'GET',
+	// 	dataType:'json',
+	// 	success:function(result){
+	// 		//listIndex=result;
+	// 		console.log('get成功'+result);
+	// 	},
+	// 	error:function(err){
+	// 		console.log(err);
+	// 	}
+	// })
+
+	var getListIndex=$.ajax({//获取歌单列表
 		url:'http://localhost:8000/SingleList',
 		type:'get',
-		success:function(result){
-			listIndex=result;
-			console.log('get成功'+result);
-		},
-		error:function(err){
-			console.log(err);
+		success:function(json){
+			data=json;
+			console.log(data);
 		}
-	})
-
-	$.when(getList,getListIndex)
+	});
+	$.when(getListIndex)
 		.done(function(){	
 			var index;
-			for(index=0;index<=data[listIndex].result.tracks.length-1;index++)
+			for(index=0;index<=data.result.tracks.length-1;index++)
 			{//点击歌单，跳转到songplay页面，改变i
-				createTags(data[listIndex],index);
+				createTags(data,index);
 			}
-			NormalPlay(data[listIndex]);
+			NormalPlay(data);
 			console.log("获取歌单数据成功");
 	});
 }
@@ -275,7 +286,6 @@ function roll(parsed){
 		}
 	}
 }
-
 window.onload=function(){
 	getListData();
 	PlayOrNot();

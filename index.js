@@ -42,7 +42,6 @@ app.all('*', function(req, res, next) {
     next();
 });
 var ep=new eventproxy();
-
 app.get('/songList',function(req,res){
 	ep.after('getData',url.length,function(data){
 		res.send(data);
@@ -63,17 +62,15 @@ app.post('/songLyric',function(req,res){
 })
 
 app.get('/songLyric',function(req,res){
-	console.log(id);
 	superagent.get('http://music.163.com/api/song/lyric?os=pc&id='+id+'&lv=-1&kv=-1&tv=-1')
 		.end(function(err,sres){
 			res.send(sres.text);
 		})
 })
+
 var index;
 app.post('/List',function(req,res){
-	//index=req.body.index;
-	//console.log(index);
-	index=req.body.$index;
+	index=req.body.dataId;
 	console.log(index);
 })
 
@@ -83,6 +80,10 @@ app.get('/SingleList',function(req,res){
 	// 		res.send(sres);
 	// 		console.log('get数据'+sres);
 	// })
-	res.send(index);
+	superagent.get('http://music.163.com/api/playlist/detail?id='+index)
+		.end(function(err,sres){
+			res.send(sres.text);
+	})
+	// res.send(index);
 })
 app.listen(8000);
